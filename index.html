@@ -1,33 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>phpClickhouse by smi2</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>phpClickhouse</h1>
-        <p>php ClickHouse wrapper|driver</p>
-        <p class="view"><a href="https://github.com/smi2/phpClickHouse">View the Project on GitHub <small>smi2/phpClickHouse</small></a></p>
-        <ul>
-          <li><a href="https://github.com/smi2/phpClickHouse/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/smi2/phpClickHouse/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/smi2/phpClickHouse">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
+    <section class="page-header">
+      <h1 class="project-name">phpClickhouse</h1>
+      <h2 class="project-tagline">php ClickHouse wrapper|driver</h2>
+      <a href="https://github.com/smi2/phpClickHouse" class="btn">View on GitHub</a>
+      <a href="https://github.com/smi2/phpClickHouse/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/smi2/phpClickHouse/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
 <a id="php-clickhouse-wrapper" class="anchor" href="#php-clickhouse-wrapper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>php ClickHouse wrapper</h1>
 
 <h2>
@@ -44,15 +36,27 @@
 <li>tablesSize &amp; databaseSize</li>
 <li>listPartitions</li>
 <li>pre production :  dropPartition &amp; dropOldPartitions </li>
+<li>Insert array as column</li>
 </ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<pre><code>composer require smi2/phpclickhouse
+</code></pre>
 
 <h2>
 <a id="start" class="anchor" href="#start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Start</h2>
 
 <p>Connect and select database:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">=</span>[<span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>192.168.1.1<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>];</span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>192.168.1.1<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span></span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"><span class="pl-smi">$db</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
 <span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>database(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>);</span></pre></div>
 
 <p>Show tables:</p>
@@ -62,55 +66,69 @@
 <p>Create table:</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>write(<span class="pl-s"><span class="pl-pds">'</span></span></span>
-<span class="pl-s1"><span class="pl-s">CREATE TABLE IF NOT EXISTS summing_url_views (</span></span>
-<span class="pl-s1"><span class="pl-s">event_date Date DEFAULT toDate(event_time),</span></span>
-<span class="pl-s1"><span class="pl-s">event_time DateTime,</span></span>
-<span class="pl-s1"><span class="pl-s">site_id Int32,</span></span>
-<span class="pl-s1"><span class="pl-s">site_key String,</span></span>
-<span class="pl-s1"><span class="pl-s">views Int32,</span></span>
-<span class="pl-s1"><span class="pl-s">v_00 Int32,</span></span>
-<span class="pl-s1"><span class="pl-s">v_55 Int32</span></span>
-<span class="pl-s1"><span class="pl-s">) ENGINE = SummingMergeTree(event_date, (site_id,site_key, event_time, event_date), 8192)</span></span>
+<span class="pl-s1"><span class="pl-s">    CREATE TABLE IF NOT EXISTS summing_url_views (</span></span>
+<span class="pl-s1"><span class="pl-s">        event_date Date DEFAULT toDate(event_time),</span></span>
+<span class="pl-s1"><span class="pl-s">        event_time DateTime,</span></span>
+<span class="pl-s1"><span class="pl-s">        site_id Int32,</span></span>
+<span class="pl-s1"><span class="pl-s">        site_key String,</span></span>
+<span class="pl-s1"><span class="pl-s">        views Int32,</span></span>
+<span class="pl-s1"><span class="pl-s">        v_00 Int32,</span></span>
+<span class="pl-s1"><span class="pl-s">        v_55 Int32</span></span>
+<span class="pl-s1"><span class="pl-s">    ) </span></span>
+<span class="pl-s1"><span class="pl-s">    ENGINE = SummingMergeTree(event_date, (site_id, site_key, event_time, event_date), 8192)</span></span>
 <span class="pl-s1"><span class="pl-s"><span class="pl-pds">'</span></span>;</span></pre></div>
 
 <p>Insert data:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$stat</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insert(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>,</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$stat</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insert(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>, </span>
 <span class="pl-s1">    [</span>
-<span class="pl-s1">        [<span class="pl-c1">time</span>(),<span class="pl-s"><span class="pl-pds">'</span>HASH1<span class="pl-pds">'</span></span>,<span class="pl-c1">2345</span>,<span class="pl-c1">22</span>,<span class="pl-c1">20</span>,<span class="pl-c1">2</span>],</span>
-<span class="pl-s1">        [<span class="pl-c1">time</span>(),<span class="pl-s"><span class="pl-pds">'</span>HASH2<span class="pl-pds">'</span></span>,<span class="pl-c1">2345</span>,<span class="pl-c1">12</span>,<span class="pl-c1">9</span>,<span class="pl-c1">3</span>],</span>
-<span class="pl-s1">        [<span class="pl-c1">time</span>(),<span class="pl-s"><span class="pl-pds">'</span>HASH3<span class="pl-pds">'</span></span>,<span class="pl-c1">5345</span>,<span class="pl-c1">33</span>,<span class="pl-c1">33</span>,<span class="pl-c1">0</span>],</span>
-<span class="pl-s1">        [<span class="pl-c1">time</span>(),<span class="pl-s"><span class="pl-pds">'</span>HASH3<span class="pl-pds">'</span></span>,<span class="pl-c1">5345</span>,<span class="pl-c1">55</span>,<span class="pl-c1">0</span>,<span class="pl-c1">55</span>],</span>
-<span class="pl-s1">    ]</span>
-<span class="pl-s1">    ,</span>
-<span class="pl-s1">    [<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>site_key<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>views<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>v_00<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>v_55<span class="pl-pds">'</span></span>]</span>
+<span class="pl-s1">        [<span class="pl-c1">time</span>(), <span class="pl-s"><span class="pl-pds">'</span>HASH1<span class="pl-pds">'</span></span>, <span class="pl-c1">2345</span>, <span class="pl-c1">22</span>, <span class="pl-c1">20</span>, <span class="pl-c1">2</span>],</span>
+<span class="pl-s1">        [<span class="pl-c1">time</span>(), <span class="pl-s"><span class="pl-pds">'</span>HASH2<span class="pl-pds">'</span></span>, <span class="pl-c1">2345</span>, <span class="pl-c1">12</span>, <span class="pl-c1">9</span>,  <span class="pl-c1">3</span>],</span>
+<span class="pl-s1">        [<span class="pl-c1">time</span>(), <span class="pl-s"><span class="pl-pds">'</span>HASH3<span class="pl-pds">'</span></span>, <span class="pl-c1">5345</span>, <span class="pl-c1">33</span>, <span class="pl-c1">33</span>, <span class="pl-c1">0</span>],</span>
+<span class="pl-s1">        [<span class="pl-c1">time</span>(), <span class="pl-s"><span class="pl-pds">'</span>HASH3<span class="pl-pds">'</span></span>, <span class="pl-c1">5345</span>, <span class="pl-c1">55</span>, <span class="pl-c1">0</span>, <span class="pl-c1">55</span>],</span>
+<span class="pl-s1">    ],</span>
+<span class="pl-s1">    [<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>site_key<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>views<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>v_00<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>v_55<span class="pl-pds">'</span></span>]</span>
 <span class="pl-s1">);</span></pre></div>
 
 <p>Select:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> summing_url_views <span class="pl-k">LIMIT</span> <span class="pl-c1">2</span></span><span class="pl-pds">'</span></span>);</span></pre></div>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$statement</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> summing_url_views <span class="pl-k">LIMIT</span> <span class="pl-c1">2</span></span><span class="pl-pds">'</span></span>);</span></pre></div>
 
 <p>Work with Statement:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">//Count select rows</span></span>
-<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>count()</span>
-<span class="pl-s1"><span class="pl-c">//Count all rows</span></span>
-<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>countAll()</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// Count select rows</span></span>
+<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>count();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Count all rows</span></span>
+<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>countAll();</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// fetch one row</span></span>
-<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>fetchOne()</span>
-<span class="pl-s1"><span class="pl-c">//get extremes min</span></span>
+<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>fetchOne();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// get extremes min</span></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>extremesMin());</span>
-<span class="pl-s1"><span class="pl-c">//totals row</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// totals row</span></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>totals());</span>
-<span class="pl-s1"><span class="pl-c">//result all</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// result all</span></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>rows());</span>
-<span class="pl-s1"><span class="pl-c">//totalTimeRequest</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// totalTimeRequest</span></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>totalTimeRequest());</span></pre></div>
 
 <p>Select result as tree:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> event_date,site_key,<span class="pl-c1">sum</span>(views),<span class="pl-c1">avg</span>(views) <span class="pl-k">FROM</span> summing_url_views <span class="pl-k">WHERE</span> site_id<span class="pl-k">&lt;</span><span class="pl-c1">3333</span> <span class="pl-k">GROUP BY</span> event_date,url_hash WITH TOTALS</span><span class="pl-pds">'</span></span>);</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$statement</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-s"><span class="pl-pds">'</span></span></span>
+<span class="pl-s1"><span class="pl-s">    SELECT event_date, site_key, sum(views), avg(views) </span></span>
+<span class="pl-s1"><span class="pl-s">    FROM summing_url_views </span></span>
+<span class="pl-s1"><span class="pl-s">    WHERE site_id &lt; 3333 </span></span>
+<span class="pl-s1"><span class="pl-s">    GROUP BY event_date, url_hash </span></span>
+<span class="pl-s1"><span class="pl-s">    WITH TOTALS</span></span>
+<span class="pl-s1"><span class="pl-s"><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>rowsAsTree(<span class="pl-s"><span class="pl-pds">'</span>event_date.site_key<span class="pl-pds">'</span></span>));</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">/*</span></span>
 <span class="pl-s1"><span class="pl-c">(</span></span>
 <span class="pl-s1"><span class="pl-c">    [2016-07-18] =&gt; Array</span></span>
@@ -131,11 +149,11 @@
 <span class="pl-s1"><span class="pl-c">                )</span></span>
 <span class="pl-s1"><span class="pl-c">        )</span></span>
 <span class="pl-s1"><span class="pl-c">)</span></span>
-<span class="pl-s1"><span class="pl-c"> */</span></span></pre></div>
+<span class="pl-s1"><span class="pl-c">*/</span></span></pre></div>
 
 <p>Drop table:</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>write(<span class="pl-s"><span class="pl-pds">"</span>DROP TABLE IF EXISTS summing_url_views<span class="pl-pds">"</span></span>);</span></pre></div>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>write(<span class="pl-s"><span class="pl-pds">'</span>DROP TABLE IF EXISTS summing_url_views<span class="pl-pds">'</span></span>);</span></pre></div>
 
 <h2>
 <a id="features-1" class="anchor" href="#features-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
@@ -143,28 +161,32 @@
 <h3>
 <a id="select-parallel-queries-asynchronous" class="anchor" href="#select-parallel-queries-asynchronous" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Select parallel queries (asynchronous)</h3>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$state1</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">1</span> <span class="pl-k">as</span> ping</span><span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1"><span class="pl-smi">$state2</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">2</span> <span class="pl-k">as</span> ping</span><span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1"><span class="pl-c">//run</span></span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$state1</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">1</span> <span class="pl-k">as</span> ping</span><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$state2</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">2</span> <span class="pl-k">as</span> ping</span><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// run</span></span>
 <span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>executeAsync();</span>
-<span class="pl-s1"><span class="pl-c">//result</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// result</span></span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$state1</span><span class="pl-k">-&gt;</span>rows());</span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$state2</span><span class="pl-k">-&gt;</span>fetchOne(<span class="pl-s"><span class="pl-pds">'</span>ping<span class="pl-pds">'</span></span>));</span></pre></div>
 
 <h3>
 <a id="parallelizing-massive-inserts-from-csv-file" class="anchor" href="#parallelizing-massive-inserts-from-csv-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parallelizing massive inserts from CSV file</h3>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$file_data_names</span><span class="pl-k">=</span>[</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$file_data_names</span> <span class="pl-k">=</span> [</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.1.data<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.2.data<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.3.data<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.4.data<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.5.data<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">];</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// insert all files</span></span>
-<span class="pl-s1"><span class="pl-smi">$stat</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>,</span>
-<span class="pl-s1">   <span class="pl-smi">$file_data_names</span>,</span>
-<span class="pl-s1">   [<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>site_key<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>views<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>v_00<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>v_55<span class="pl-pds">'</span></span>]</span>
+<span class="pl-s1"><span class="pl-smi">$stat</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-smi">$file_data_names</span>,</span>
+<span class="pl-s1">    [<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>site_key<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>views<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>v_00<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>v_55<span class="pl-pds">'</span></span>]</span>
 <span class="pl-s1">);</span></pre></div>
 
 <h3>
@@ -172,9 +194,9 @@
 
 <p>selectAsync without executeAsync</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$select</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> summing_url_views <span class="pl-k">LIMIT</span> <span class="pl-c1">1</span></span><span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1"><span class="pl-smi">$insert</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>,[<span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.1.data<span class="pl-pds">'</span></span>],[<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>]);</span>
-<span class="pl-s1"><span class="pl-c">// 'Exception' with message 'Queue must be empty, before insertBatch,need executeAsync'</span></span></pre></div>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$select</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-k">*</span> <span class="pl-k">FROM</span> summing_url_views <span class="pl-k">LIMIT</span> <span class="pl-c1">1</span></span><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$insert</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>/tmp/clickHouseDB_test.1.data<span class="pl-pds">'</span></span>], [<span class="pl-s"><span class="pl-pds">'</span>event_time<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1"><span class="pl-c">// 'Exception' with message 'Queue must be empty, before insertBatch, need executeAsync'</span></span></pre></div>
 
 <p>see example/exam5_error_async.php</p>
 
@@ -186,15 +208,12 @@
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>max_execution_time(<span class="pl-c1">200</span>);</span>
 <span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>enableHttpCompression(<span class="pl-c1">true</span>);</span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$result_insert</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>,<span class="pl-smi">$file_data_names</span>,[<span class="pl-k">......</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$result_insert</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insertBatchFiles(<span class="pl-s"><span class="pl-pds">'</span>summing_url_views<span class="pl-pds">'</span></span>, <span class="pl-smi">$file_data_names</span>, [<span class="pl-k">...</span>]);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$result_insert</span> <span class="pl-k">as</span> <span class="pl-smi">$fileName</span><span class="pl-k">=&gt;</span><span class="pl-smi">$state</span>)</span>
-<span class="pl-s1">{</span>
-<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$fileName</span> =&gt; <span class="pl-pds">"</span></span><span class="pl-k">.</span><span class="pl-c1">json_encode</span>(<span class="pl-smi">$state</span><span class="pl-k">-&gt;</span>info_upload())<span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>;</span>
-<span class="pl-s1">}</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"></span></pre></div>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$result_insert</span> <span class="pl-k">as</span> <span class="pl-smi">$fileName</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$state</span>) {</span>
+<span class="pl-s1">    <span class="pl-c1">echo</span> <span class="pl-smi">$fileName</span> <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span> =&gt; <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-c1">json_encode</span>(<span class="pl-smi">$state</span><span class="pl-k">-&gt;</span>info_upload()) <span class="pl-k">.</span> <span class="pl-c1">PHP_EOL</span>;</span>
+<span class="pl-s1">}</span></pre></div>
 
 <p>see example/exam8_http_gzip_batch_insert.php</p>
 
@@ -203,7 +222,7 @@
 
 <p>We use in the smi2, DNS Round-Robin.</p>
 
-<p>Set host =  "clickhouse.smi2.ru" is A record  =&gt; [ xdb1.ch1.smi2.ru,xdb1.ch2.smi2.ru,xdb1.ch3.smi2.ru....]</p>
+<p>Set host =  "clickhouse.smi2.ru" is A record  =&gt; [ xdb1.ch1.smi2.ru, xdb1.ch2.smi2.ru, xdb1.ch3.smi2.ru.... ]</p>
 
 <p>function findActiveHostAndCheckCluster() - ping all IPs in DNS record</p>
 
@@ -213,72 +232,71 @@
 
 <p>see example/exam6_check_cluster.php</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
-<span class="pl-s1"><span class="pl-smi">$change_host</span><span class="pl-k">=</span><span class="pl-c1">true</span>;</span>
-<span class="pl-s1"><span class="pl-smi">$time_out_second</span><span class="pl-k">=</span><span class="pl-c1">1</span>;</span>
-<span class="pl-s1"><span class="pl-c1">list</span>(<span class="pl-smi">$resultGoodHost</span>,<span class="pl-smi">$resultBadHost</span>,<span class="pl-smi">$selectHost</span>)<span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>findActiveHostAndCheckCluster(<span class="pl-smi">$time_out_second</span>,<span class="pl-smi">$change_host</span>);</span>
-<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>SelectHost:<span class="pl-pds">"</span></span><span class="pl-k">.</span><span class="pl-smi">$selectHost</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>;</span>
-<span class="pl-s1"></span></pre></div>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$db</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$change_host</span> <span class="pl-k">=</span> <span class="pl-c1">true</span>;</span>
+<span class="pl-s1"><span class="pl-smi">$time_out_second</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">list</span>(<span class="pl-smi">$resultGoodHost</span>, <span class="pl-smi">$resultBadHost</span>, <span class="pl-smi">$selectHost</span>) <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>findActiveHostAndCheckCluster(<span class="pl-smi">$time_out_second</span>, <span class="pl-smi">$change_host</span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">'</span>SelectHost: <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$selectHost</span> <span class="pl-k">.</span> <span class="pl-c1">PHP_EOL</span>;</span></pre></div>
 
 <h3>
 <a id="tablessize--databasesize" class="anchor" href="#tablessize--databasesize" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>tablesSize &amp; databaseSize</h3>
 
 <p>Result in <em>human size</em></p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>databaseSize()));</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>databaseSize());</span>
 <span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>tablesSize());</span>
-<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>tableSize(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>));</span>
-<span class="pl-s1"></span></pre></div>
+<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>tableSize(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>));</span></pre></div>
 
 <h3>
 <a id="partitions" class="anchor" href="#partitions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Partitions</h3>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$count_result</span><span class="pl-k">=</span><span class="pl-c1">2</span>;</span>
-<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>partitions(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>,<span class="pl-smi">$count_result</span>));</span></pre></div>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$count_result</span> <span class="pl-k">=</span> <span class="pl-c1">2</span>;</span>
+<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>partitions(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>, <span class="pl-smi">$count_result</span>));</span></pre></div>
 
 <p>Drop partitions ( pre production )</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$count_old_days</span><span class="pl-k">=</span><span class="pl-c1">10</span>;</span>
-<span class="pl-s1"><span class="pl-c1">print_r</span>(</span>
-<span class="pl-s1">    <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>dropOldPartitions(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>,<span class="pl-smi">$count_old_days</span>);</span>
-<span class="pl-s1">)</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$count_old_days</span> <span class="pl-k">=</span> <span class="pl-c1">10</span>;</span>
+<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>dropOldPartitions(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>, <span class="pl-smi">$count_old_days</span>));</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// by `partition_id` </span></span>
-<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>dropPartition(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>201512<span class="pl-pds">'</span></span>));</span></pre></div>
+<span class="pl-s1"><span class="pl-c1">print_r</span>(<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>dropPartition(<span class="pl-s"><span class="pl-pds">'</span>summing_partions_views<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>201512<span class="pl-pds">'</span></span>));</span></pre></div>
 
 <h3>
 <a id="select-where-in--local-csv-file-" class="anchor" href="#select-where-in--local-csv-file-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Select WHERE IN ( <em>local csv file</em> )</h3>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$file_name_data1</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>/tmp/temp_csv.txt<span class="pl-pds">"</span></span>; <span class="pl-c">// two column file [int,string]</span></span>
-<span class="pl-s1"><span class="pl-smi">$whereIn</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">\ClickHouseDB\</span><span class="pl-c1">WhereInFile</span>();</span>
-<span class="pl-s1"><span class="pl-smi">$whereIn</span><span class="pl-k">-&gt;</span>attachFile(<span class="pl-smi">$file_name_data1</span>,<span class="pl-s"><span class="pl-pds">'</span>namex<span class="pl-pds">'</span></span>,[<span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>Int32<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>site_hash<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>String<span class="pl-pds">'</span></span>],<span class="pl-c1">\ClickHouseDB\</span><span class="pl-c1">WhereInFile</span><span class="pl-k">::</span><span class="pl-c1">FORMAT_CSV</span>);</span>
-<span class="pl-s1"><span class="pl-smi">$result</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-smi">$sql</span>,[],<span class="pl-smi">$whereIn</span>);</span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$file_name_data1</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>/tmp/temp_csv.txt<span class="pl-pds">'</span></span>; <span class="pl-c">// two column file [int,string]</span></span>
+<span class="pl-s1"><span class="pl-smi">$whereIn</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">\ClickHouseDB\</span><span class="pl-c1">WhereInFile</span>();</span>
+<span class="pl-s1"><span class="pl-smi">$whereIn</span><span class="pl-k">-&gt;</span>attachFile(<span class="pl-smi">$file_name_data1</span>, <span class="pl-s"><span class="pl-pds">'</span>namex<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>site_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Int32<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>site_hash<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>String<span class="pl-pds">'</span></span>], <span class="pl-c1">\ClickHouseDB\</span><span class="pl-c1">WhereInFile</span><span class="pl-k">::</span><span class="pl-c1">FORMAT_CSV</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$result</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>select(<span class="pl-smi">$sql</span>, [], <span class="pl-smi">$whereIn</span>);</span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-c">//see example/exam7_where_in.php</span></span></pre></div>
+<span class="pl-s1"><span class="pl-c">// see example/exam7_where_in.php</span></span></pre></div>
 
 <h3>
 <a id="simple-sql-conditions--template" class="anchor" href="#simple-sql-conditions--template" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Simple sql conditions &amp; template</h3>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$input_params</span><span class="pl-k">=</span>[</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>select_date<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span>[<span class="pl-s"><span class="pl-pds">'</span>2000-10-10<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>2000-10-11<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>2000-10-12<span class="pl-pds">'</span></span>],</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>limit<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">5</span>,</span>
-<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>from_table<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>table<span class="pl-pds">'</span></span></span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$input_params</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>select_date<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> [<span class="pl-s"><span class="pl-pds">'</span>2000-10-10<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>2000-10-11<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>2000-10-12<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>limit<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">5</span>,</span>
+<span class="pl-s1">  <span class="pl-s"><span class="pl-pds">'</span>from_table<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>table<span class="pl-pds">'</span></span></span>
 <span class="pl-s1">];</span>
-<span class="pl-s1"><span class="pl-smi">$select</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span></span></span>
-<span class="pl-s1"><span class="pl-s">SELECT * FROM {from_table}</span></span>
-<span class="pl-s1"><span class="pl-s">WHERE</span></span>
-<span class="pl-s1"><span class="pl-s">{if select_date}</span></span>
-<span class="pl-s1"><span class="pl-s">event_date IN (:select_date)</span></span>
-<span class="pl-s1"><span class="pl-s">{else}</span></span>
-<span class="pl-s1"><span class="pl-s">event_date=today()</span></span>
-<span class="pl-s1"><span class="pl-s">{/if}</span></span>
-<span class="pl-s1"><span class="pl-s">{if limit}</span></span>
-<span class="pl-s1"><span class="pl-s">LIMIT {limit}</span></span>
-<span class="pl-s1"><span class="pl-s">{/if}</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$select</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span></span></span>
+<span class="pl-s1"><span class="pl-s">    SELECT * FROM {from_table}</span></span>
+<span class="pl-s1"><span class="pl-s">    WHERE</span></span>
+<span class="pl-s1"><span class="pl-s">    {if select_date}</span></span>
+<span class="pl-s1"><span class="pl-s">        event_date IN (:select_date)</span></span>
+<span class="pl-s1"><span class="pl-s">    {else}</span></span>
+<span class="pl-s1"><span class="pl-s">        event_date=today()</span></span>
+<span class="pl-s1"><span class="pl-s">    {/if}</span></span>
+<span class="pl-s1"><span class="pl-s">    {if limit}</span></span>
+<span class="pl-s1"><span class="pl-s">    LIMIT {limit}</span></span>
+<span class="pl-s1"><span class="pl-s">    {/if}</span></span>
 <span class="pl-s1"><span class="pl-s"><span class="pl-pds">'</span></span>;</span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-smi">$select</span>,<span class="pl-smi">$input_params</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$statement</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-smi">$select</span>, <span class="pl-smi">$input_params</span>);</span>
 <span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>sql();</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">/*</span></span>
 <span class="pl-s1"><span class="pl-c">SELECT * FROM table</span></span>
 <span class="pl-s1"><span class="pl-c">WHERE</span></span>
@@ -288,9 +306,10 @@
 <span class="pl-s1"><span class="pl-c">*/</span></span>
 <span class="pl-s1"></span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$input_params</span>[<span class="pl-s"><span class="pl-pds">'</span>select_date<span class="pl-pds">'</span></span>]<span class="pl-k">=</span><span class="pl-c1">false</span>;</span>
-<span class="pl-s1"><span class="pl-smi">$statement</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-smi">$select</span>,<span class="pl-smi">$input_params</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$input_params</span>[<span class="pl-s"><span class="pl-pds">'</span>select_date<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-c1">false</span>;</span>
+<span class="pl-s1"><span class="pl-smi">$statement</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-smi">$select</span>, <span class="pl-smi">$input_params</span>);</span>
 <span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$statement</span><span class="pl-k">-&gt;</span>sql();</span>
+<span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">/*</span></span>
 <span class="pl-s1"><span class="pl-c">SELECT * FROM table</span></span>
 <span class="pl-s1"><span class="pl-c">WHERE</span></span>
@@ -300,8 +319,12 @@
 <span class="pl-s1"><span class="pl-c">*/</span></span>
 <span class="pl-s1"></span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-smi">$state1</span><span class="pl-k">=</span><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">1</span> <span class="pl-k">as</span> {key} <span class="pl-k">WHERE</span> {key}<span class="pl-k">=</span>:value</span><span class="pl-pds">'</span></span>,[<span class="pl-s"><span class="pl-pds">'</span>key<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>ping<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">1</span>]);</span>
-<span class="pl-s1"><span class="pl-c">// SELECT 1 as ping WHERE ping="1"</span></span></pre></div>
+<span class="pl-s1"><span class="pl-smi">$state1</span> <span class="pl-k">=</span> <span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>selectAsync(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span><span class="pl-s1"><span class="pl-k">SELECT</span> <span class="pl-c1">1</span> <span class="pl-k">as</span> {key} <span class="pl-k">WHERE</span> {key} <span class="pl-k">=</span> :value</span><span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    [<span class="pl-s"><span class="pl-pds">'</span>key<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>ping<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span>]</span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// SELECT 1 as ping WHERE ping = "1"</span></span></pre></div>
 
 <h3>
 <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Settings</h3>
@@ -309,49 +332,124 @@
 <p>3 way set any settings</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// in array config</span></span>
-<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">=</span>[<span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>settings<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span>[<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">100</span>]];</span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>settings<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> [<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">100</span>]</span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"><span class="pl-smi">$db</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// settings via constructor </span></span>
-<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">=</span>[<span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>];</span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>,[<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">100</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"><span class="pl-smi">$db</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>, [<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">100</span>]);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// set method</span></span>
-<span class="pl-s1"><span class="pl-smi">$config</span><span class="pl-k">=</span>[<span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>];</span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>set(<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span>,<span class="pl-c1">100</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$config</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>, </span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>8123<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>username<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>password<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"><span class="pl-smi">$db</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ClickHouseDB\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$config</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>set(<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span>, <span class="pl-c1">100</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// apply array method </span></span>
-<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>apply([<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">100</span>,<span class="pl-s"><span class="pl-pds">'</span>max_block_size<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-c1">12345</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>apply([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">100</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>max_block_size<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">12345</span></span>
+<span class="pl-s1">]);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1"></span>
 <span class="pl-s1"><span class="pl-c">// check</span></span>
-<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>getSetting(<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span>)<span class="pl-k">!</span><span class="pl-k">==</span><span class="pl-c1">100</span>) <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-c1">Exception</span>(<span class="pl-s"><span class="pl-pds">"</span>Bad work settings<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>settings()<span class="pl-k">-&gt;</span>getSetting(<span class="pl-s"><span class="pl-pds">'</span>max_execution_time<span class="pl-pds">'</span></span>) <span class="pl-k">!</span><span class="pl-k">==</span> <span class="pl-c1">100</span>) {</span>
+<span class="pl-s1">    <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-c1">Exception</span>(<span class="pl-s"><span class="pl-pds">'</span>Bad work settings<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">}</span>
 <span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-c">//see example/exam10_settings.php</span></span>
-<span class="pl-s1"></span></pre></div>
+<span class="pl-s1"><span class="pl-c">// see example/exam10_settings.php</span></span></pre></div>
+
+<h3>
+<a id="array-as-column" class="anchor" href="#array-as-column" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Array as column</h3>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>write(<span class="pl-s"><span class="pl-pds">'</span></span></span>
+<span class="pl-s1"><span class="pl-s">    CREATE TABLE IF NOT EXISTS arrays_test_string (</span></span>
+<span class="pl-s1"><span class="pl-s">        s_key String,</span></span>
+<span class="pl-s1"><span class="pl-s">        s_arr Array(String)</span></span>
+<span class="pl-s1"><span class="pl-s">    ) </span></span>
+<span class="pl-s1"><span class="pl-s">    ENGINE = Memory</span></span>
+<span class="pl-s1"><span class="pl-s"><span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$db</span><span class="pl-k">-&gt;</span>insert(<span class="pl-s"><span class="pl-pds">'</span>arrays_test_string<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    [</span>
+<span class="pl-s1">        [<span class="pl-s"><span class="pl-pds">'</span>HASH1<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>dddd<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>xxx<span class="pl-pds">"</span></span>]],</span>
+<span class="pl-s1">        [<span class="pl-s"><span class="pl-pds">'</span>HASH1<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">"</span>b'<span class="pl-cce">\t</span>x<span class="pl-pds">"</span></span>]],</span>
+<span class="pl-s1">    ],</span>
+<span class="pl-s1">    [<span class="pl-s"><span class="pl-pds">'</span>s_key<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>s_arr<span class="pl-pds">'</span></span>]</span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// see example/exam12_array.php</span></span></pre></div>
+
+<p>Class for CSV array</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">var_dump</span>(</span>
+<span class="pl-s1">    <span class="pl-c1">\ClickHouseDB\</span><span class="pl-c1">CSV</span><span class="pl-k">::</span>quoteRow(</span>
+<span class="pl-s1">        [<span class="pl-s"><span class="pl-pds">'</span>HASH1<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>dddd<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>xxx<span class="pl-pds">"</span></span>]]</span>
+<span class="pl-s1">    )</span>
+<span class="pl-s1">);</span></pre></div>
+
+<h3>
+<a id="phpunit-test" class="anchor" href="#phpunit-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Phpunit Test</h3>
+
+<p>In phpunit.xml change cons:</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">php</span>&gt;
+    &lt;<span class="pl-ent">const</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phpunit_clickhouse_host<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>192.168.1.20<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">const</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phpunit_clickhouse_port<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>8123<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">const</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phpunit_clickhouse_user<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>default<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">const</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phpunit_clickhouse_pass<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">const</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phpunit_clickhouse_tmp_path<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>/tmp/<span class="pl-pds">"</span></span> /&gt;
+&lt;/<span class="pl-ent">php</span>&gt;</pre></div>
 
 <h3>
 <a id="todos" class="anchor" href="#todos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todos</h3>
 
 <ul>
 <li>Write unit-tests &amp; more docs</li>
-<li>Fix <code>array</code> insert in row</li>
 <li>Find ActiveHost &amp; CheckCluster - how check cluster and replica work?</li>
 <li>Drop partitions in cluster</li>
+<li>Fix timezone settings for HHVM, or where not set <code>date.timezone setting</code> </li>
+<li>HHVM (VM 3.9.1): CURLOPT_SAFE_UPLOAD : <code>hhvm example/exam7_where_in.php</code>
+</li>
 </ul>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
 
 <p>MIT</p>
-      </section>
-    </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/smi2">smi2</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ChangeLog</h2>
+
+<ul>
+<li>2016-08-11 Release 0.2.0 : ( exception on error write ) </li>
+<li>2016-08-06 Release 0.1.0 </li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/smi2/phpClickHouse">phpClickhouse</a> is maintained by <a href="https://github.com/smi2">smi2</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
