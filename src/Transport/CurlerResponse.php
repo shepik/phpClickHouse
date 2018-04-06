@@ -269,13 +269,24 @@ class Response
     {
         return $this->_info;
     }
+
     /**
      * @param null $key
      * @return bool|mixed
+     * @throws \Exception
      */
     public function json($key = null)
     {
         $d = json_decode($this->body(), true);
+
+        if ($d === null) {
+        	$err = 'Can`t decode response';
+            $body = $this->as_string();
+            if (mb_strpos(mb_substr($body, 0, 1000), 'Exception:') !== false) {
+                $err .= ". $body";
+			}
+            throw new \Exception($err);
+        }
 
         if (!$key) {
             return $d;
